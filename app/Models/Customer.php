@@ -4,10 +4,12 @@ namespace App\Models;
 
 use App\Traits\Trashed;
 use App\Traits\Sortable;
+use App\Enums\AddressType;
 use App\Traits\CamelCasing;
 use EloquentFilter\Filterable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\MediaLibrary\HasMedia;
+use App\Traits\InteractsWithAddress;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;
 use Spatie\MediaLibrary\InteractsWithMedia;
@@ -16,9 +18,9 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable implements JWTSubject, HasMedia
+class Customer extends Authenticatable implements JWTSubject, HasMedia
 {
-    use SoftDeletes, Trashed, Filterable, Sortable, HasApiTokens, HasFactory, Notifiable, CamelCasing, InteractsWithMedia;
+    use SoftDeletes, Filterable, Sortable, Trashed, HasApiTokens, HasFactory, Notifiable, CamelCasing, InteractsWithMedia, InteractsWithAddress;
 
     /**
      * The relations to eager load on every query.
@@ -33,8 +35,10 @@ class User extends Authenticatable implements JWTSubject, HasMedia
      * @var string[]
      */
     protected $fillable = [
-        'name',
+        'firstName',
+        'lastName',
         'email',
+        'phone',
         'password',
     ];
 
@@ -59,7 +63,7 @@ class User extends Authenticatable implements JWTSubject, HasMedia
      *
      * @var array
      */
-    protected $appends = ['type', 'profilePhotoUrl'];
+    protected $appends = ['name', 'type', 'profilePhotoUrl'];
 
     /**
      * Available sortable fields
@@ -103,7 +107,17 @@ class User extends Authenticatable implements JWTSubject, HasMedia
      */
     public function getTypeAttribute()
     {
-        return "admin";
+        return "customer";
+    }
+
+    /**
+     * Get the name attribute
+     * 
+     * @return string
+     */
+    public function getNameAttribute()
+    {
+        return "{$this->firstName} {$this->lastName}";
     }
 
     /**
@@ -112,5 +126,29 @@ class User extends Authenticatable implements JWTSubject, HasMedia
     public function getProfilePhotoUrlAttribute()
     {
         return $this->getFirstMediaUrl('profile-photo') ?? null;
+    }
+
+    /**
+     * Get billing address attribute
+     *
+     * @return mixed
+     */
+    public function getBillingAddressAttribute()
+    {
+        if ($this->address) {
+            return $this->address->where('type', AddressType::BILLING_ADDRESS())->first();
+        }
+    }
+
+    /**
+     * Get shipping address attribute
+     *
+     * @return mixed
+     */
+    public function getShippingAddressAttribute()
+    {
+        if ($this->address) {
+            return $this->address->where('type', AddressType::SHIPPING_ADDRESS())->first();
+        }
     }
 }
