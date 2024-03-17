@@ -136,7 +136,7 @@ class Customer extends Authenticatable implements JWTSubject, HasMedia
     public function getBillingAddressAttribute()
     {
         if ($this->address) {
-            return $this->address->where('type', AddressType::BILLING_ADDRESS())->first();
+            return $this->address->where('type', AddressType::BILLING_ADDRESS)->first();
         }
     }
 
@@ -148,7 +148,7 @@ class Customer extends Authenticatable implements JWTSubject, HasMedia
     public function getShippingAddressAttribute()
     {
         if ($this->address) {
-            return $this->address->where('type', AddressType::SHIPPING_ADDRESS())->first();
+            return $this->address->where('type', AddressType::SHIPPING_ADDRESS)->first();
         }
     }
 }
