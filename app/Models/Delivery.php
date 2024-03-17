@@ -85,7 +85,7 @@ class Delivery extends Model
      */
     public function getSubTotalFormattedAttribute()
     {
-        $value = new Money(ceil($this->subTotal), new Currency("BDT"), true);
+        // $value = new Money(ceil($this->subTotal), new Currency("BDT"), true);
         return $value->formatWithoutZeroes();
     }
 
