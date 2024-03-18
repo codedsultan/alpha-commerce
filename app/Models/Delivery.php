@@ -86,7 +86,7 @@ class Delivery extends Model
     public function getSubTotalFormattedAttribute()
     {
         // $value = new Money(ceil($this->subTotal), new Currency("BDT"), true);
-        return $value->formatWithoutZeroes();
+        // return $value->formatWithoutZeroes();
     }
 
     /**
@@ -94,8 +94,8 @@ class Delivery extends Model
      */
     public function getTotalDiscountFormattedAttribute()
     {
-        $value = new Money(ceil($this->totalDiscount), new Currency("BDT"), true);
-        return $value->formatWithoutZeroes();
+        // $value = new Money(ceil($this->totalDiscount), new Currency("BDT"), true);
+        // return $value->formatWithoutZeroes();
     }
 
     /**
@@ -103,7 +103,7 @@ class Delivery extends Model
      */
     public function getGrandTotalFormattedAttribute()
     {
-        $value = new Money(ceil($this->grandTotal), new Currency("BDT"), true);
-        return $value->formatWithoutZeroes();
+        // $value = new Money(ceil($this->grandTotal), new Currency("BDT"), true);
+        // return $value->formatWithoutZeroes();
     }
 }

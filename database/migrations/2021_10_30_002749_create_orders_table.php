@@ -23,7 +23,7 @@ class CreateOrdersTable extends Migration
             $table->double('grand_total')->default(0);
             $table->string('note')->nullable();
             $table->string('payment_method');
-            $table->string('status')->default(OrderStatus::PENDING());
+            $table->string('status')->default(OrderStatus::PENDING);
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('customer_id')->references('id')->on('customers');

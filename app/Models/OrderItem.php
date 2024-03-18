@@ -61,8 +61,8 @@ class OrderItem extends Model
      */
     public function getRateFormattedAttribute()
     {
-        $value = new Money(ceil($this->rate), new Currency("BDT"), true);
-        return $value->formatWithoutZeroes();
+        // $value = new Money(ceil($this->rate), new Currency("BDT"), true);
+        // return $value->formatWithoutZeroes();
     }
 
     /**
@@ -70,7 +70,7 @@ class OrderItem extends Model
      */
     public function getAmountFormattedAttribute()
     {
-        $value = new Money(ceil($this->amount), new Currency("BDT"), true);
-        return $value->formatWithoutZeroes();
+        // $value = new Money(ceil($this->amount), new Currency("BDT"), true);
+        // return $value->formatWithoutZeroes();
     }
 }

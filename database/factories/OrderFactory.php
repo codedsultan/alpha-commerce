@@ -28,7 +28,7 @@ class OrderFactory extends Factory
         return [
             'customer_id'    => $this->faker->randomElement(Customer::pluck('id')->toArray()),
             'note'           => $this->faker->sentence(),
-            'payment_method' => PaymentMethod::COD(),
+            'payment_method' => PaymentMethod::COD,
         ];
     }
 
@@ -45,7 +45,7 @@ class OrderFactory extends Factory
         })->afterCreating(function (Order $order) {
             // Create billing address
             $order->address()->create([
-                'type'      => AddressType::BILLING_ADDRESS(),
+                'type'      => AddressType::BILLING_ADDRESS,
                 'street'    => $this->faker->streetAddress,
                 'city'      => $this->faker->city,
                 'zipcode'   => $this->faker->postcode,
@@ -54,7 +54,7 @@ class OrderFactory extends Factory
 
             // Create shipping address
             $order->address()->create([
-                'type'      => AddressType::SHIPPING_ADDRESS(),
+                'type'      => AddressType::SHIPPING_ADDRESS,
                 'street'    => $this->faker->streetAddress,
                 'city'      => $this->faker->city,
                 'zipcode'   => $this->faker->postcode,

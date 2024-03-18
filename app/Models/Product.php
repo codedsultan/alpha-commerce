@@ -81,8 +81,8 @@ class Product extends Model implements HasMedia
      */
     public function getPriceFormattedAttribute()
     {
-        $value = new Money(ceil($this->price), new Currency("BDT"), true);
-        return $value->formatWithoutZeroes();
+        // $value = new Money(ceil($this->price), new Currency("BDT"), true);
+        // return $value->formatWithoutZeroes();
     }
 
     /**

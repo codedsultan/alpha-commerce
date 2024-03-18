@@ -123,7 +123,7 @@ class Order extends Model
     public function getBillingAddressAttribute()
     {
         if ($this->address) {
-            return $this->address->where('type', AddressType::BILLING_ADDRESS())->first();
+            return $this->address->where('type', AddressType::BILLING_ADDRESS)->first();
         }
     }
 
@@ -135,7 +135,7 @@ class Order extends Model
     public function getShippingAddressAttribute()
     {
         if ($this->address) {
-            return $this->address->where('type', AddressType::SHIPPING_ADDRESS())->first();
+            return $this->address->where('type', AddressType::SHIPPING_ADDRESS)->first();
         }
     }
 
@@ -144,8 +144,8 @@ class Order extends Model
      */
     public function getSubTotalFormattedAttribute()
     {
-        $value = new Money(ceil($this->subTotal), new Currency("BDT"), true);
-        return $value->formatWithoutZeroes();
+        // $value = new Money(ceil($this->subTotal), new Currency("BDT"), true);
+        // return $value->formatWithoutZeroes();
     }
 
     /**
@@ -153,8 +153,8 @@ class Order extends Model
      */
     public function getTotalDiscountFormattedAttribute()
     {
-        $value = new Money(ceil($this->totalDiscount), new Currency("BDT"), true);
-        return $value->formatWithoutZeroes();
+        // $value = new Money(ceil($this->totalDiscount), new Currency("BDT"), true);
+        // return $value->formatWithoutZeroes();
     }
 
     /**
@@ -162,7 +162,7 @@ class Order extends Model
      */
     public function getGrandTotalFormattedAttribute()
     {
-        $value = new Money(ceil($this->grandTotal), new Currency("BDT"), true);
-        return $value->formatWithoutZeroes();
+        // $value = new Money(ceil($this->grandTotal), new Currency("BDT"), true);
+        // return $value->formatWithoutZeroes();
     }
 }
