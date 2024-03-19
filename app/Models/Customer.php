@@ -10,6 +10,7 @@ use EloquentFilter\Filterable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\MediaLibrary\HasMedia;
 use App\Traits\InteractsWithAddress;
+use App\Traits\UploadsMedia;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;
 use Spatie\MediaLibrary\InteractsWithMedia;
@@ -21,6 +22,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class Customer extends Authenticatable implements JWTSubject, HasMedia
 {
     use SoftDeletes, Filterable, Sortable, Trashed, HasApiTokens, HasFactory, Notifiable, CamelCasing, InteractsWithMedia, InteractsWithAddress;
+    use UploadsMedia;
 
     /**
      * The relations to eager load on every query.
@@ -112,7 +114,7 @@ class Customer extends Authenticatable implements JWTSubject, HasMedia
 
     /**
      * Get the name attribute
-     * 
+     *
      * @return string
      */
     public function getNameAttribute()
