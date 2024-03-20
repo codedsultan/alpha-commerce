@@ -21,7 +21,7 @@ trait MakeNotification
             "subtitle" => $payload['subtitle'] ?? null,
             "link"     => $payload['link'] ?? null,
             // "data"     => $payload['data'] ?? null,
-            "type"     => $payload['type'] ?? NotificationType::INFO(),
+            "type"     => $payload['type'] ?? NotificationType::INFO,
             // 'icon'     => $payload['icon'] ?? 'fas fa-info'
         ];
     }

@@ -22,12 +22,12 @@ trait CreateCustomer
 
         // Set billing address
         if (!empty($request->billingAddress)) {
-            $customer->setAddress($request->billingAddress, AddressType::BILLING_ADDRESS());
+            $customer->setAddress($request->billingAddress, AddressType::BILLING_ADDRESS);
         }
 
         // Set shipping address
         if (!empty($request->shippingAddress)) {
-            $customer->setAddress($request->shippingAddress, AddressType::SHIPPING_ADDRESS());
+            $customer->setAddress($request->shippingAddress, AddressType::SHIPPING_ADDRESS);
         }
 
         return $customer->id;
