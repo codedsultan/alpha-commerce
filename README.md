@@ -5,7 +5,10 @@
 
 ## AlphaCommerce API
 
-This is a laravel  backend for an e-commerce application 
+This is a laravel api backend for an e-commerce vue front-end application 
+<a href="https://github.com/codedsultan/alpha-commerce-vue-front" target="_blank">
+vue front-end application
+<a/>
 Built with laravel 11 framework
 
 
